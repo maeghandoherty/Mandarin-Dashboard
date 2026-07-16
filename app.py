@@ -1,11 +1,7 @@
 import streamlit as st
 
-st.title("📚 My Mandarin Dashboard")
+st.title("My Dashboard")
 
-st.write("Welcome back!")
+st.write("Hello!")
 
-st.metric("Cards Due", 24)
-st.metric("Current Streak", "8 days")
-
-if st.button("Start Studying"):
-    st.success("Let's learn some Mandarin!")
+st.button("Click me")
