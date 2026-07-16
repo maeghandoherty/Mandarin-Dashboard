@@ -99,7 +99,14 @@ else:
 
     st.markdown(
         f"""
-        <div style="border: 2px solid black; border-radius: 20px; padding: 50px; text-align: center;">
+        <div style="
+            border: 2px solid #cccccc;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            background-color: #fafafa;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        ">
             <h1>{card['Chinese']}</h1>
             <h2>{card['Pingyin']}</h2>
             <p>{card['English']}</p>
