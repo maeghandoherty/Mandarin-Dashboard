@@ -104,7 +104,7 @@ if st.button("Show Answer"):
         f"""
         <div class="flashcard">
             <h1>{card["Chinese"]}</h1>
-            <h2>{card["Pinyin"]}</h2>
+            <h2>{card["Pingyin"]}</h2>
             <p>{card["English"]}</p>
         </div>
         """,
