@@ -85,7 +85,7 @@ st.header("🃏 Flashcards")
 if len(filtered_vocab) > 0:
 
     if st.session_state.current_card is None:
-    st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
+        st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
 
     card = st.session_state.current_card
 
