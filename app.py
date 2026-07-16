@@ -109,11 +109,11 @@ else:
             <h1 style="font-size:60px;">
                 {card["Chinese"]}
             </h1>
-        "
+
             <h2 style="font-size:25px;">
                 {card["Pingyin"]}
             </h2>
-        "   
+
             <h2 style="font-size:25px;">
                 {card["English"]}
             </h2>
