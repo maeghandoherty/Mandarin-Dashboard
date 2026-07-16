@@ -98,7 +98,7 @@ if len(filtered_vocab) > 0:
     unsafe_allow_html=True
 )
 
-    if st.button("Show Answer"):
+if st.button("Show Answer"):
 
     st.markdown(
         f"""
