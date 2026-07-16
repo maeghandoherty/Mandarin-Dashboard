@@ -29,8 +29,11 @@ st.set_page_config(
 )
 #page title
 st.title("📚 My Mandarin Dashboard")
+st.write(
+    f"You have {len(filtered_vocab)} words available"
+)
 
-st.write("Welcome back! Ready to study today?")
+st.dataframe(filtered_vocab)
 
 #Filtering words by HSK Levels
 st.sidebar.title("📚 Study Settings")
