@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import random
 
 # Load HSK files
 hsk1 = pd.read_csv("data/New-HSK-1-Word-List.csv")
@@ -50,7 +51,27 @@ levels = st.sidebar.multiselect(
 filtered_vocab = vocab[
     vocab["level"].isin(levels)
 ]
+st.divider()
 
+#Flashcards
+st.header("🃏 Flashcards")
+
+if len(filtered_vocab) > 0:
+
+    card = filtered_vocab.sample(1).iloc[0]
+
+    st.subheader(card["Chinese"])
+
+if st.button("Show Answer"):
+
+    st.write(card["Pingyin"])
+    st.write(card["English"])   
+
+ if st.button("Again"):
+    st.warning("Review this word more often")
+
+if st.button("Good"):
+    st.success("Nice!")
 
 # Display
 st.title("📚 Mandarin Dashboard")
