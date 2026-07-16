@@ -53,7 +53,6 @@ filtered_vocab = vocab[
 ]
 st.divider()
 
-#Flashcards
 st.header("🃏 Flashcards")
 
 if len(filtered_vocab) > 0:
@@ -62,16 +61,17 @@ if len(filtered_vocab) > 0:
 
     st.subheader(card["Chinese"])
 
-if st.button("Show Answer"):
+    if st.button("Show Answer"):
+        st.write(card["Pingyin"])
+        st.write(card["English"])
 
-    st.write(card["Pingyin"])
-    st.write(card["English"])   
+    st.divider()
 
- if st.button("Again"):
-    st.warning("Review this word more often")
+    if st.button("Again"):
+        st.warning("Review this word again")
 
-if st.button("Good"):
-    st.success("Nice!")
+    if st.button("Good"):
+        st.success("Nice work!")
 
 # Display
 st.title("📚 Mandarin Dashboard")
