@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import random
 
+if "current_card" not in st.session_state:
+    st.session_state.current_card = None
+
+if "show_answer" not in st.session_state:
+    st.session_state.show_answer = False
+
 # Load HSK files
 hsk1 = pd.read_csv("data/New-HSK-1-Word-List.csv")
 hsk2 = pd.read_csv("data/New-HSK-2-Word-List.csv")
@@ -52,18 +58,58 @@ filtered_vocab = vocab[
     vocab["level"].isin(levels)
 ]
 st.divider()
+st.markdown(
+    """
+    <style>
 
+    .flashcard {
+        background-color: white;
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        border: 2px solid #dddddd;
+        margin: 20px 0;
+    }
+
+    .flashcard h1 {
+        font-size: 60px;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+#flashcards
 st.header("🃏 Flashcards")
 
 if len(filtered_vocab) > 0:
 
-    card = filtered_vocab.sample(1).iloc[0]
+    if st.session_state.current_card is None:
+    st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
 
-    st.subheader(card["Chinese"])
+    card = st.session_state.current_card
+
+    st.markdown(
+    f"""
+    <div class="flashcard">
+        <h1>{card["Chinese"]}</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
     if st.button("Show Answer"):
-        st.write(card["Pingyin"])
-        st.write(card["English"])
+
+    st.markdown(
+        f"""
+        <div class="flashcard">
+            <h1>{card["Chinese"]}</h1>
+            <h2>{card["Pinyin"]}</h2>
+            <p>{card["English"]}</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.divider()
 
@@ -72,7 +118,11 @@ if len(filtered_vocab) > 0:
 
     if st.button("Good"):
         st.success("Nice work!")
+        
+    if st.button("➡️ Next Card"):
 
+    st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
+    st.session_state.show_answer = False
 # Display
 st.title("📚 Mandarin Dashboard")
 
