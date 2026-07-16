@@ -120,9 +120,8 @@ if st.button("Show Answer"):
         st.success("Nice work!")
         
     if st.button("➡️ Next Card"):
-
-    st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
-    st.session_state.show_answer = False
+        st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
+        st.session_state.show_answer = False
 # Display
 st.title("📚 Mandarin Dashboard")
 
