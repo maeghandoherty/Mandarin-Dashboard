@@ -9,6 +9,14 @@ st.set_page_config(
 )
 
 st.title("📚 My Mandarin Dashboard")
+
+st.sidebar.title("Study Settings")
+
+levels = st.sidebar.multiselect(
+    "Choose levels",
+    options=vocab["level"].unique(),
+    default=vocab["level"].unique()
+)
 st.write("Welcome back! Ready to study today?")
 
 col1, col2, col3 = st.columns(3)
