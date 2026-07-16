@@ -111,7 +111,7 @@ else:
             </h1>
 
             <h2>
-                {card["Pinyin"]}
+                {card["Pingyin"]}
             </h2>
 
             <p style="font-size:25px;">
