@@ -107,22 +107,21 @@ else:
             background-color: white;
         ">
             <h1 style="font-size:60px;">
-                {card["Chinese"]}
+                {card['Chinese']}
             </h1>
 
             <h2 style="font-size:25px;">
-                {card["Pingyin"]}
+                {card['Pinyin']}
             </h2>
 
-            <h2 style="font-size:25px;">
-                {card["English"]}
-            </h2>
+            <p style="font-size:25px;">
+                {card['English']}
+            </p>
 
         </div>
         """,
         unsafe_allow_html=True
     )
-
 
 # FLIP BUTTON
 if st.button("🔄 Flip Card"):
