@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-# Load your vocabulary files
+# Load HSK files
 hsk1 = pd.read_csv("data/New-HSK-1-Word-List.csv")
 hsk2 = pd.read_csv("data/New-HSK-2-Word-List.csv")
 hsk3 = pd.read_csv("data/New-HSK-3-Word-List.csv")
@@ -9,6 +9,8 @@ hsk4 = pd.read_csv("data/New-HSK-4-Word-List.csv")
 hsk5 = pd.read_csv("data/New-HSK-5-Word-List.csv")
 hsk6 = pd.read_csv("data/New-HSK-6-Word-List.csv")
 
+
+# Add level labels
 hsk1["level"] = "HSK 1"
 hsk2["level"] = "HSK 2"
 hsk3["level"] = "HSK 3"
@@ -16,26 +18,15 @@ hsk4["level"] = "HSK 4"
 hsk5["level"] = "HSK 5"
 hsk6["level"] = "HSK 6"
 
+
+# Combine all vocabulary
 vocab = pd.concat(
     [hsk1, hsk2, hsk3, hsk4, hsk5, hsk6],
     ignore_index=True
 )
 
-#Page set up 
-st.set_page_config(
-    page_title="Mandarin Dashboard",
-    page_icon="📚",
-    layout="wide"
-)
-#page title
-st.title("📚 My Mandarin Dashboard")
-st.write(
-    f"You have {len(filtered_vocab)} words available"
-)
 
-st.dataframe(filtered_vocab)
-
-#Filtering words by HSK Levels
+# Sidebar
 st.sidebar.title("📚 Study Settings")
 
 levels = st.sidebar.multiselect(
@@ -54,10 +45,21 @@ levels = st.sidebar.multiselect(
     ]
 )
 
+
+# Filter vocabulary  ← THIS MUST COME BEFORE USING filtered_vocab
 filtered_vocab = vocab[
     vocab["level"].isin(levels)
 ]
 
+
+# Display
+st.title("📚 Mandarin Dashboard")
+
+st.write(
+    f"You have {len(filtered_vocab)} words available"
+)
+
+st.dataframe(filtered_vocab)
 #website columns
 col1, col2, col3 = st.columns(3)
 
