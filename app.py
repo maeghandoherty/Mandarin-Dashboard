@@ -57,28 +57,84 @@ levels = st.sidebar.multiselect(
 filtered_vocab = vocab[
     vocab["level"].isin(levels)
 ]
+# ----------------
+# Flashcards
+# ----------------
+
 st.divider()
-st.markdown(
-    """
-    <style>
+st.header("🃏 Flashcards")
 
-    .flashcard {
-        background-color: white;
-        border-radius: 20px;
-        padding: 50px;
-        text-align: center;
-        border: 2px solid #dddddd;
-        margin: 20px 0;
-    }
 
-    .flashcard h1 {
-        font-size: 60px;
-    }
+# Create a card if one doesn't exist
+if st.session_state.current_card is None:
+    st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
 
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
+card = st.session_state.current_card
+
+
+# FRONT OF CARD
+if st.session_state.show_answer == False:
+
+    st.markdown(
+        f"""
+        <div style="
+            border: 2px solid #cccccc;
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            background-color: white;
+        ">
+            <h1 style="font-size:60px;">
+                {card["Chinese"]}
+            </h1>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+# BACK OF CARD
+else:
+
+    st.markdown(
+        f"""
+        <div style="
+            border: 2px solid #cccccc;
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            background-color: white;
+        ">
+            <h1 style="font-size:60px;">
+                {card["Chinese"]}
+            </h1>
+
+            <h2>
+                {card["Pinyin"]}
+            </h2>
+
+            <p style="font-size:25px;">
+                {card["English"]}
+            </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+# FLIP BUTTON
+if st.button("🔄 Flip Card"):
+
+    st.session_state.show_answer = not st.session_state.show_answer
+
+
+# NEXT CARD BUTTON
+if st.button("➡️ Next Card"):
+
+    st.session_state.current_card = filtered_vocab.sample(1).iloc[0]
+    st.session_state.show_answer = False
 #flashcards
 st.header("🃏 Flashcards")
 
